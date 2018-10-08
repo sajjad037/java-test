@@ -3,7 +3,6 @@ package com.h2rd.refactoring.usermanagement;
 import java.util.ArrayList;
 
 // Singleton desogn pattern or other creational design pattern,
-// Add, delete and update should be synchonided operation or use synchonizd Array List.
 /**
  * Data access Object Class, it handles the RCUD operation on user object.
  * 
@@ -34,10 +33,12 @@ public class UserDao {
 	 * @param user User
 	 */
 	public void saveUser(User user) {
-		if (users == null) {
-			users = new ArrayList<User>();
+		if (this.users == null) {
+			this.users = new ArrayList<User>();
 		}
-		users.add(user);
+		synchronized (this) {
+			this.users.add(user);
+		}
 	}
 
 	/**
@@ -47,7 +48,7 @@ public class UserDao {
 	 */
 	public ArrayList<User> getUsers() {
 		try {
-			return users;
+			return this.users;
 		} catch (Throwable e) {
 			System.out.println("error");
 			return null;
@@ -61,11 +62,20 @@ public class UserDao {
 	 */
 	public void deleteUser(User userToDelete) {
 		try {
-			for (User user : users) {
-				if (user.getName() == userToDelete.getName()) {
-					users.remove(user);
+			int removeIdx = -1;
+			for (int i = 0; i < this.users.size(); i++) {
+				if (this.users.get(i).getEmail().equals(userToDelete.getEmail())) {
+					removeIdx = i;
+					break;
 				}
 			}
+
+			if (removeIdx > -1) {
+				synchronized (this) {
+					this.users.remove(removeIdx);
+				}
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,10 +88,12 @@ public class UserDao {
 	 */
 	public void updateUser(User userToUpdate) {
 		try {
-			for (User user : users) {
+			for (User user : this.users) {
 				if (user.getName() == userToUpdate.getName()) {
-					user.setEmail(userToUpdate.getEmail());
-					user.setRoles(userToUpdate.getRoles());
+					synchronized (this) {
+						user.setEmail(userToUpdate.getEmail());
+						user.setRoles(userToUpdate.getRoles());
+					}
 				}
 			}
 		} catch (RuntimeException e) {
@@ -97,7 +109,7 @@ public class UserDao {
 	 */
 	public User findUser(String name) {
 		try {
-			for (User user : users) {
+			for (User user : this.users) {
 				if (user.getName() == name) {
 					return user;
 				}
