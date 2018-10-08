@@ -142,7 +142,7 @@ public class UserResource {
 			userDao = UserDao.getUserDao();
 		}
 
-		User user = userDao.findUser(name);
+		ArrayList<User> user = userDao.findUser(name);
 		return Response.ok().entity(user).build();
 	}
 }

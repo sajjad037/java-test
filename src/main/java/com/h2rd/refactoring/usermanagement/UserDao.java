@@ -89,11 +89,12 @@ public class UserDao {
 	public void updateUser(User userToUpdate) {
 		try {
 			for (User user : this.users) {
-				if (user.getName() == userToUpdate.getName()) {
+				if (user.getEmail().equals(userToUpdate.getEmail())) {
 					synchronized (this) {
 						user.setEmail(userToUpdate.getEmail());
 						user.setRoles(userToUpdate.getRoles());
 					}
+					break;
 				}
 			}
 		} catch (RuntimeException e) {
@@ -107,10 +108,30 @@ public class UserDao {
 	 * @param name String
 	 * @return User
 	 */
-	public User findUser(String name) {
+	public ArrayList<User> findUser(String name) {
+		ArrayList<User> usr = new ArrayList<User>();
 		try {
 			for (User user : this.users) {
-				if (user.getName() == name) {
+				if (user.getName().equals(name)) {
+					usr.add(user);
+				}
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		return usr;
+	}
+	
+	/**
+	 * Find a user by email
+	 * 
+	 * @param name String
+	 * @return User
+	 */
+	public User findUserByEmail(String email) {
+		try {
+			for (User user : this.users) {
+				if (user.getEmail().equals(email)) {
 					return user;
 				}
 			}
