@@ -1,31 +1,73 @@
 package com.h2rd.refactoring.usermanagement;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * This a model class of User. It contains the properties of a user.
+ * 
+ * @author aldocuevas
+ *
+ */
 @XmlRootElement
 public class User {
 
-    String name;
-    String email;
-    List<String> roles;
+	String name;
+	String email;
+	List<String> roles;
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public List<String> getRoles() {
-        return roles;
-    }
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
+	/**
+	 * Get Name
+	 * 
+	 * @return String
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Set Name
+	 * 
+	 * @param name String
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Get Email
+	 * 
+	 * @return String
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * set Email
+	 * 
+	 * @param email String
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * Get roles
+	 * 
+	 * @return List<String>
+	 */
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * Set Roles
+	 * 
+	 * @param roles List<String>
+	 */
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 }
