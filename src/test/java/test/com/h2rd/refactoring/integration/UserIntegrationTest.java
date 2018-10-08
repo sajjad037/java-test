@@ -1,6 +1,7 @@
 package test.com.h2rd.refactoring.integration;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.ws.rs.core.Response;
 
@@ -30,10 +31,25 @@ public class UserIntegrationTest {
 		User integration = new User();
 		integration.setName("integration");
 		integration.setEmail("initial@integration.com");
-		integration.setRoles(new ArrayList<String>());
+		integration.setRoles(Arrays.asList("admin"));
 
 		Response response = userResource.addUser(integration.getName(), integration.getEmail(), integration.getRoles());
 		Assert.assertEquals(200, response.getStatus());
+	}
+	
+	/**
+	 * Test Case: Create User Fail
+	 */
+	public void createUserFailTest() {
+		UserResource userResource = new UserResource();
+
+		User integration = new User();
+		integration.setName("integration");
+		integration.setEmail("initial@integration.com");
+		integration.setRoles(new ArrayList<String>());
+
+		Response response = userResource.addUser(integration.getName(), integration.getEmail(), integration.getRoles());
+		Assert.assertEquals(403, response.getStatus());
 	}
 
 	@Test
@@ -48,7 +64,7 @@ public class UserIntegrationTest {
 		User updated = new User();
 		updated.setName("integration");
 		updated.setEmail("updated@integration.com");
-		updated.setRoles(new ArrayList<String>());
+		updated.setRoles(Arrays.asList("admin", "master"));
 
 		Response response = userResource.updateUser(updated.getName(), updated.getEmail(), updated.getRoles());
 		Assert.assertEquals(200, response.getStatus());

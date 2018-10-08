@@ -1,5 +1,7 @@
 package test.com.h2rd.refactoring.unit;
 
+import java.util.Arrays;
+
 import javax.ws.rs.core.Response;
 
 import org.junit.Test;
@@ -35,6 +37,7 @@ public class UserResourceUnitTest {
 		User user = new User();
 		user.setName("fake user");
 		user.setEmail("fake@user.com");
+		user.setRoles(Arrays.asList("admin", "master"));
 		userDao.saveUser(user);
 
 		Response response = userResource.getUsers();

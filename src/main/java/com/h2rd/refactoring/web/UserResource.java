@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.h2rd.refactoring.usermanagement.User;
 import com.h2rd.refactoring.usermanagement.UserDao;
+import com.h2rd.refactoring.utilities.Validation;
 
 @Path("/users")
 @Repository
@@ -47,12 +48,18 @@ public class UserResource {
 		user.setEmail(email);
 		user.setRoles(roles);
 
+		ArrayList<String> errorrs = new Validation().validateUser(user);
+		if (errorrs.size() > 0) {
+			return Response.status(Response.Status.FORBIDDEN).entity(errorrs).build();
+		}
+		
 		if (userDao == null) {
 			userDao = UserDao.getUserDao();
 		}
 
 		userDao.saveUser(user);
 		return Response.ok().entity(user).build();
+
 	}
 
 	@GET
@@ -73,6 +80,11 @@ public class UserResource {
 		user.setEmail(email);
 		user.setRoles(roles);
 
+		ArrayList<String> errorrs = new Validation().validateUser(user);
+		if (errorrs.size() > 0) {
+			return Response.status(Response.Status.FORBIDDEN).entity(errorrs).build();
+		}
+		
 		if (userDao == null) {
 			userDao = UserDao.getUserDao();
 		}
@@ -98,6 +110,11 @@ public class UserResource {
 		user.setEmail(email);
 		user.setRoles(roles);
 
+		ArrayList<String> errorrs = new Validation().validateUser(user);
+		if (errorrs.size() > 0) {
+			return Response.status(Response.Status.FORBIDDEN).entity(errorrs).build();
+		}
+		
 		if (userDao == null) {
 			userDao = UserDao.getUserDao();
 		}
