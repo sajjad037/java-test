@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.h2rd.refactoring.usermanagement.User;
+import com.h2rd.refactoring.models.User;
 import com.h2rd.refactoring.usermanagement.UserDao;
 
 /**

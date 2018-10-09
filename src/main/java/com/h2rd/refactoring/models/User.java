@@ -1,8 +1,7 @@
-package com.h2rd.refactoring.usermanagement;
+package com.h2rd.refactoring.models;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * This a model class of User. It contains the properties of a user.
@@ -10,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author aldocuevas
  *
  */
-@XmlRootElement
 public class User {
 
 	String name;

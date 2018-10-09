@@ -2,7 +2,8 @@ package com.h2rd.refactoring.usermanagement;
 
 import java.util.ArrayList;
 
-// Singleton desogn pattern or other creational design pattern,
+import com.h2rd.refactoring.models.User;
+
 /**
  * Data access Object Class, it handles the RCUD operation on user object.
  * 
@@ -11,9 +12,15 @@ import java.util.ArrayList;
  */
 public class UserDao {
 
-	public ArrayList<User> users;
+	public ArrayList<User> users = new ArrayList<User>();
 
-	public static UserDao userDao;
+	private static UserDao userDao;
+
+	/**
+	 * Constructor: It is private so that this class cannot be instantiated
+	 */
+	private UserDao() {
+	}
 
 	/**
 	 * Get instance of user DOA
@@ -33,9 +40,6 @@ public class UserDao {
 	 * @param user User
 	 */
 	public void saveUser(User user) {
-		if (this.users == null) {
-			this.users = new ArrayList<User>();
-		}
 		synchronized (this) {
 			this.users.add(user);
 		}
@@ -121,7 +125,7 @@ public class UserDao {
 		}
 		return usr;
 	}
-	
+
 	/**
 	 * Find a user by email
 	 * 

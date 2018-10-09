@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response;
 
 import org.junit.Test;
 
-import com.h2rd.refactoring.usermanagement.User;
+import com.h2rd.refactoring.models.User;
 import com.h2rd.refactoring.usermanagement.UserDao;
 import com.h2rd.refactoring.web.UserResource;
 
