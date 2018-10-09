@@ -49,7 +49,7 @@ public class UserService {
 	/**
 	 * get Users
 	 * 
-	 * @return List<User>
+	 * @return - List of User
 	 */
 	public List<User> getUsers() {
 		return UserDao.getUserDao().getUsers();
@@ -69,7 +69,7 @@ public class UserService {
 	 * find User
 	 * 
 	 * @param name String
-	 * @return ArrayList<User>
+	 * @return - ArrayList of User
 	 */
 	public ArrayList<User> findUser(String name) {
 		return UserDao.getUserDao().findUser(name);

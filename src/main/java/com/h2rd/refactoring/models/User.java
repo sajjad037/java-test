@@ -54,7 +54,7 @@ public class User {
 	/**
 	 * Get roles
 	 * 
-	 * @return List<String>
+	 * @return - List of String
 	 */
 	public List<String> getRoles() {
 		return roles;
@@ -63,7 +63,7 @@ public class User {
 	/**
 	 * Set Roles
 	 * 
-	 * @param roles List<String>
+	 * @param roles - List of String
 	 */
 	public void setRoles(List<String> roles) {
 		this.roles = roles;

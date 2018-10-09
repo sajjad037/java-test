@@ -1,0 +1,7 @@
+com.h2rd.refactoring.models
+com.h2rd.refactoring.service
+com.h2rd.refactoring.usermanagement
+com.h2rd.refactoring.utilities
+com.h2rd.refactoring.web
+test.com.h2rd.refactoring.integration
+test.com.h2rd.refactoring.unit

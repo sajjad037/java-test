@@ -13,7 +13,7 @@ public class Validation {
 	/**
 	 * Validate user mandatory fields. and return error lists if there any
 	 * @param user User
-	 * @return ArrayList<String>
+	 * @return - ArrayList of String
 	 */
 	public ArrayList<String> validateUser(User user) {
 		ArrayList<String> errorList = new ArrayList<String>();
